@@ -12,7 +12,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import axios from '../../axios.js';
 
 export const AddPost = () => {
-	const {id} = useParams()
+	const { id } = useParams()
 	const navigate = useNavigate();
 	const [text, setText] = React.useState('');
 	const [title, setTitle] = React.useState('');
@@ -45,21 +45,21 @@ export const AddPost = () => {
 	}, []);
 
 	useEffect(() => {
-    if (id) {
-      axios
-        .get(`/posts/${id}`)
-        .then(({ data }) => {
-          setTitle(data.title);
-          setText(data.text);
-          setImageUrl(data.imageUrl);
-          setTags(data.tags.join(','));
-        })
-        .catch((err) => {
-          console.warn(err);
-          alert('Ошибка при получении статьи!');
-        });
-    }
-  }, []);
+		if (id) {
+			axios
+				.get(`/posts/${id}`)
+				.then(({ data }) => {
+					setTitle(data.title);
+					setText(data.text);
+					setImageUrl(data.imageUrl);
+					setTags(data.tags.join(','));
+				})
+				.catch((err) => {
+					console.warn(err);
+					alert('Ошибка при получении статьи!');
+				});
+		}
+	}, []);
 
 	const onSubmit = async () => {
 		try {
@@ -70,11 +70,11 @@ export const AddPost = () => {
 				tags,
 				text,
 			};
-			const { data } = isEditing ? 
-			await axios.patch(`/posts/${id}`, fields) : 
-			await axios.post('/posts', fields) 
+			const { data } = isEditing ?
+				await axios.patch(`/posts/${id}`, fields) :
+				await axios.post('/posts', fields)
 
-			const _id = isEditing ? id :  data._id;
+			const _id = isEditing ? id : data._id;
 
 			navigate(`/posts/${_id}`);
 		} catch (err) {
@@ -83,12 +83,21 @@ export const AddPost = () => {
 		}
 	};
 
+	const customStyles = `
+  .editor-toolbar {
+    background-color: #dda15e;
+  }
+  .CodeMirror {
+    background-color: #dda15e;
+  }
+`;
+
 	const options = React.useMemo(
 		() => ({
 			spellChecker: false,
 			maxHeight: '400px',
 			autofocus: true,
-			placeholder: 'Введите текст...',
+			placeholder: 'Type text...',
 			status: false,
 			autosave: {
 				enabled: true,
@@ -104,15 +113,15 @@ export const AddPost = () => {
 	}
 
 	return (
-		<Paper style={{ padding: 30 }}>
-			<Button variant="outlined" onClick={() => imageUrlRef.current.click()} size="large">
-				Загрузить превью
+		<Paper className={styles.paper}>
+			<Button className={styles.upload} variant="outlined" onClick={() => imageUrlRef.current.click()} size="large">
+				Upload image
 			</Button>
 			<input ref={imageUrlRef} type="file" onChange={handleChangeFile} hidden />
 			{imageUrl && (
 				<>
 					<Button variant="contained" color="error" onClick={onClickRemoveImage}>
-						Удалить
+						Remove
 					</Button>
 					<img className={styles.image} src={`${process.env.REACT_APP_API_URL}${imageUrl}`} alt="Uploaded" />
 				</>
@@ -135,13 +144,13 @@ export const AddPost = () => {
 				value={tags}
 				onChange={(e) => setTags(e.target.value)}
 			/>
-			<SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />
+			<SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} customStyles={customStyles}/>
 			<div className={styles.buttons}>
-				<Button onClick={onSubmit} size="large" variant="contained">
+				<Button onClick={onSubmit} className={styles.submitBtn} size="large" variant="contained">
 					{isEditing ? 'Submit changes' : "Publish"}
 				</Button>
 				<a href="/">
-					<Button size="large">Отмена</Button>
+					<Button size="large" className={styles.cancelBtn}>Cancel</Button>
 				</a>
 			</div>
 		</Paper>

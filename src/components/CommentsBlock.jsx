@@ -10,6 +10,8 @@ import List from "@mui/material/List";
 import Skeleton from "@mui/material/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRemoveComment, removeComment } from "../redux/slices/posts";
+import { Typography } from "@mui/material";
+import styles from './CommentsBlock.module.scss'
 
 export const CommentsBlock = ({currentUser, items, id, children, isLoading = true }) => {
 	const dispatch = useDispatch()
@@ -27,8 +29,9 @@ export const CommentsBlock = ({currentUser, items, id, children, isLoading = tru
 	};
 
 	return (
-		<SideBlock title="Комментарии">
-			<List>
+		<>
+		<Typography variant="body1" className={styles.title}>Last Comments</Typography>
+			<List className={styles.body}>
 				{(isLoading ? [...Array(5)] : items).map((comment, index) => (
 					<React.Fragment key={index}>
 						<ListItem alignItems="flex-start">
@@ -52,9 +55,9 @@ export const CommentsBlock = ({currentUser, items, id, children, isLoading = tru
 									/>
 									<button
 										onClick={() => handleDeleteComment(id, comment._id)}
-										style={{ display: currentUser && currentUser._id === comment.user._id ? 'flex' : 'none' , alignItems: 'center', justifyContent: 'center'}}
+										style={{ display: currentUser && currentUser._id === comment.user._id ? 'flex' : 'none', backgroundColor: "#bc6c25", borderColor: "#bc6c25", color: "#fff", padding: '5px 8px'}}
 									>
-										Удалить
+										Delete
 									</button>
 								</>
 							)}
@@ -64,7 +67,7 @@ export const CommentsBlock = ({currentUser, items, id, children, isLoading = tru
 				))}
 			</List>
 			{children}
-		</SideBlock>
+		</>
 	);
 };
 

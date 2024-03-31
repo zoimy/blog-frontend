@@ -22,7 +22,7 @@
 
 .editor {
   margin: 30px -30px;
-
+	background-color: #bc6c25 !important;
   :global {
     .cm-s-easymde {
       border: 0;
@@ -30,7 +30,7 @@
     }
     .editor-toolbar {
       border: 0;
-      background-color: rgb(0 0 0 / 2%);
+      background-color: #bc6c25 !important;
     }
   }
 }
@@ -41,4 +41,21 @@
   button {
     margin-right: 15px;
   }
+}
+
+.paper {
+	padding: 30px;
+}
+
+.cancelBtn {
+	color: #bc6c25 !important;
+}
+
+.submitBtn {
+	background-color: #bc6c25 !important;
+}
+
+.upload {
+	color: #bc6c25 !important;
+	border-color: #bc6c25 !important;
 }

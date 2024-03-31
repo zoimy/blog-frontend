@@ -45,7 +45,7 @@ export const Index = ({ postId }) => {
         />
         <div className={styles.form}>
           <TextField
-            label="Написать комментарий"
+            label="Type your comment"
             variant="outlined"
             maxRows={10}
             multiline
@@ -53,8 +53,8 @@ export const Index = ({ postId }) => {
             value={commentText}
             onChange={handleTextChange} // Изменено здесь
           />
-          <Button variant="contained" onClick={handleCommentSubmit}>
-            Отправить
+          <Button variant="contained" className={styles.button} onClick={handleCommentSubmit}>
+            Send
           </Button>
         </div>
       </div>

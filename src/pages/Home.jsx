@@ -34,8 +34,8 @@ export const Home = () => {
 	return (
 		<>
 			<Tabs style={{ marginBottom: 15 }} value={currentTab} onChange={handleTabChange} aria-label="basic tabs example">
-				<Tab label="Новые" />
-				<Tab label="Популярные" />
+				<Tab label="New" />
+				<Tab label="Popular" />
 			</Tabs>
 			<Grid container spacing={4}>
 				<Grid xs={8} item>

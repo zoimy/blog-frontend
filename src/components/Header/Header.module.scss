@@ -1,7 +1,7 @@
 .root {
-  background-color: #fff;
+  background-color: #dda15e;
   padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #d69d5b;
   margin-bottom: 30px;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .logo {
-  background-color: rgb(9, 181, 187);
+  background-color: #bc6c25;
   color: #fff;
   font-weight: 700;
   line-height: 35px;
@@ -22,7 +22,7 @@
   text-decoration: none;
 
   &:hover {
-    background-color: #4361ee;
+    background-color: #743a08;
   }
 }
 
@@ -34,4 +34,34 @@
   a {
     text-decoration: none;
   }
+}
+
+
+.auth__button {
+	background-color: #bc6c25 !important;
+	color: #fff !important;
+	border-color: #bc6c25 !important;
+	position: relative; 
+	overflow-x: hidden;
+}
+
+.auth__button .flare {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 45px;
+	transform: skewX(-45deg); // Наклон
+	animation: flareAnimation;
+	left: -150%;
+	background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4));
+	animation: flareAnimation 3s infinite linear; // Время и тип анимации можно менять
+}
+
+@keyframes flareAnimation {
+	0% {
+			left: -150%;
+	}
+	100% {
+			left: 150%;
+	}
 }

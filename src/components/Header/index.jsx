@@ -29,19 +29,19 @@ export const Header = () => {
             {isAuth ? (
               <>
                 <Link to="/add-post">
-                  <Button variant="contained">Написать статью</Button>
+                  <Button  className={styles.auth__button} variant="contained">Create post<span className={styles.flare}></span></Button>
                 </Link>
-                <Button onClick={onClickLogout} variant="contained" color="error">
-                  Выйти
+                <Button onClick={onClickLogout} style={{backgroundColor: "#c1121f"}} variant="contained" color="error">
+                  Exit
                 </Button>
               </>
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="outlined">Войти</Button>
+                  <Button className={styles.auth__button} variant="outlined">Login</Button>
                 </Link>
                 <Link to="/register">
-                  <Button variant="contained">Создать аккаунт</Button>
+                  <Button variant="contained" className={styles.auth__button}>Create account<span className={styles.flare}></span></Button>
                 </Link>
               </>
             )}

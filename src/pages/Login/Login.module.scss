@@ -1,8 +1,9 @@
 .root {
-  width: 400px;
+	width: 400px;
   padding: 50px;
   border: 1px solid #dedede;
   margin: 50px auto;
+	background-color: #dda15e !important ;
 }
 
 .field {
@@ -13,4 +14,11 @@
   text-align: center !important;
   font-weight: bold !important;
   margin-bottom: 30px !important;
+	color: white !important;
+	background-color: #bc6c25 !important;
+}
+
+.btnLogin {
+	background-color: #bc6c25 !important;
+	color: white !important;
 }

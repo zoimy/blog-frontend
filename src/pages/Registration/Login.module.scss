@@ -3,6 +3,7 @@
   padding: 50px;
   border: 1px solid #dedede;
   margin: 50px auto;
+	background-color: #dda15e !important ;
 }
 
 .field {
@@ -13,10 +14,18 @@
   text-align: center !important;
   font-weight: bold !important;
   margin-bottom: 30px !important;
+	color: white !important;
+	background-color: #bc6c25 !important;
 }
 
 .avatar {
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+}
+
+
+.btnRegister {
+	background-color: #bc6c25 !important;
+	color: white !important;
 }
