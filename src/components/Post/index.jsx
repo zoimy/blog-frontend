@@ -9,9 +9,12 @@ import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
+import axios from '../../axios'
+import { useDispatch } from 'react-redux';
+import { fetchRemovePost } from '../../redux/slices/posts';
 
 export const Post = ({
-  _id,
+  id,
   title,
   createdAt,
   imageUrl,
@@ -24,17 +27,20 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
+	const dispatch = useDispatch()
   if (isLoading) {
     return <PostSkeleton />;
   }
 
-  const onClickRemove = () => {};
+  const onClickRemove = async() => {
+		dispatch(fetchRemovePost(id))
+	};
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
       {isEditable && (
         <div className={styles.editButtons}>
-          <a href={`/posts/${_id}/edit`}>
+          <a href={`/posts/${id}/edit`}>
             <IconButton color="primary">
               <EditIcon />
             </IconButton>
@@ -55,12 +61,12 @@ export const Post = ({
         <UserInfo {...user} additionalText={createdAt} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
-            {isFullPost ? title : <a href={`/posts/${_id}`}>{title}</a>}
+            {isFullPost ? title : <a href={`/posts/${id}`}>{title}</a>}
           </h2>
           <ul className={styles.tags}>
             {tags.map((name) => (
               <li key={name}>
-                <a href={`/tag/${name}`}>#{name}</a>
+                <a href={`/tags/${name}`}>#{name}</a>
               </li>
             ))}
           </ul>
